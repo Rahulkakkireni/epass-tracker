@@ -1,21 +1,3 @@
-# Telangana ePASS Notification State
-
-Last updated: 2026-07-29 00:27:56 IST
-
-This file documents how we compute the "Amount Deposited" value extracted from ePASS notification pages.
-
-Rule (updated)
-
-- Amount Deposited must be taken only from columns that have a bank remitted date. If multiple columns have a bank remitted date, sum the corresponding amount values and use that sum. If none of the columns has a bank remitted date, set Amount Deposited to NULL.
-
-Notes
-
-- Use COALESCE to handle NULL amount cells so that NULL amounts are treated as 0 when summing.
-- The CASE wrap ensures you get NULL only when no remitted date exists; if remitted dates exist but the amounts sum to 0, the result will be 0 (not NULL).
-
-Existing example state (unchanged):
-
-```json
 {
   "202111856079|2021-22": {
     "bank_remitted_date_present": true,
@@ -53,4 +35,3 @@ Existing example state (unchanged):
     "reported_conditions": []
   }
 }
-```
