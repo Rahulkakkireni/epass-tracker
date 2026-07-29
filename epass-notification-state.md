@@ -2,6 +2,51 @@
 
 Last updated: 2026-07-29 00:27:56 IST
 
+This file documents how we compute the "Amount Deposited" value extracted from ePASS notification pages.
+
+Rule (updated)
+
+- Amount Deposited must be taken only from columns that have a bank remitted date. If multiple columns have a bank remitted date, sum the corresponding amount values and use that sum. If none of the columns has a bank remitted date, set Amount Deposited to NULL.
+
+SQL examples
+
+1) If you have two pairs (remitted_date_1, amount_1) and (remitted_date_2, amount_2):
+
+```sql
+CASE
+  WHEN remitted_date_1 IS NULL AND remitted_date_2 IS NULL THEN NULL
+  ELSE
+    COALESCE(CASE WHEN remitted_date_1 IS NOT NULL THEN COALESCE(amount_1, 0) ELSE 0 END, 0)
+    + COALESCE(CASE WHEN remitted_date_2 IS NOT NULL THEN COALESCE(amount_2, 0) ELSE 0 END, 0)
+END AS amount_deposited
+```
+
+2) Generic approach for N pairs (pseudocode / SQL construction):
+
+```sql
+-- Replace remitted_date_i and amount_i with your actual column names
+CASE
+  WHEN (
+    remitted_date_1 IS NULL
+    AND remitted_date_2 IS NULL
+    -- AND remitted_date_3 IS NULL ... for all i=1..N
+  ) THEN NULL
+  ELSE (
+    CASE WHEN remitted_date_1 IS NOT NULL THEN COALESCE(amount_1, 0) ELSE 0 END
+    + CASE WHEN remitted_date_2 IS NOT NULL THEN COALESCE(amount_2, 0) ELSE 0 END
+    -- + CASE WHEN remitted_date_3 IS NOT NULL THEN COALESCE(amount_3, 0) ELSE 0 END
+    -- ... for all i=1..N
+  )
+END AS amount_deposited
+```
+
+Notes
+
+- Use COALESCE to handle NULL amount cells so that NULL amounts are treated as 0 when summing.
+- The CASE wrap ensures you get NULL only when no remitted date exists; if remitted dates exist but the amounts sum to 0, the result will be 0 (not NULL).
+
+Existing example state (unchanged):
+
 ```json
 {
   "202111856079|2021-22": {
