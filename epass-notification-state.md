@@ -1,6 +1,6 @@
 # Telangana ePASS Notification State
 
-Last updated: 2026-11-20 05:18:03 IST
+Last updated: 2026-11-21 04:50:35 IST
 
 ```json
 {
@@ -8,7 +8,7 @@ Last updated: 2026-11-20 05:18:03 IST
     "bank_remitted_date_present": false,
     "explicit_103000_shown": false,
     "last_observed_total_or_summed_sanctioned_amount": 0.0,
-    "last_successful_check": "2026-11-20T05:17:38.001437+05:30",
+    "last_successful_check": "2026-11-21T04:50:08.996010+05:30",
     "reported_conditions": [
       "103000_released",
       "above_35000"
@@ -18,21 +18,21 @@ Last updated: 2026-11-20 05:18:03 IST
     "bank_remitted_date_present": false,
     "explicit_103000_shown": false,
     "last_observed_total_or_summed_sanctioned_amount": 0.0,
-    "last_successful_check": "2026-11-20T05:17:45.534657+05:30",
+    "last_successful_check": "2026-11-21T04:50:16.038235+05:30",
     "reported_conditions": []
   },
   "202311856079|2023-24": {
     "bank_remitted_date_present": false,
     "explicit_103000_shown": false,
     "last_observed_total_or_summed_sanctioned_amount": 0.0,
-    "last_successful_check": "2026-11-20T05:17:54.232981+05:30",
+    "last_successful_check": "2026-11-21T04:50:23.034360+05:30",
     "reported_conditions": []
   },
   "202411856079|2024-25": {
     "bank_remitted_date_present": false,
     "explicit_103000_shown": false,
     "last_observed_total_or_summed_sanctioned_amount": 0.0,
-    "last_successful_check": "2026-11-20T05:18:03.018367+05:30",
+    "last_successful_check": "2026-11-21T04:50:35.318761+05:30",
     "reported_conditions": []
   }
 }
